@@ -38,11 +38,11 @@ def extract_ts(filename,outdir,video_name,info,threads=1):
             "mpegts", "-ss", info["start"], "-t", duration(info["start"], info["end"]),
             "-strict", "experimental", "-threads", str(threads), "-y", out_file_name ])
 
-def concat(parts_files,outdir,video_name,threads=1):
+def concat(part_files,outdir,video_name,threads=1):
     out_file_name = "{}/{}.{}".format(outdir,video_name,'.mp4')
     if not os.path.isfile(out_file_name):
         subprocess.call(["avconv", "-i",
-            "concat:" + "|".join(sorted(parts_files)),
+            "concat:" + "|".join(sorted(part_files)),
             "-acodec", "copy", "-vcodec", "libx264", "-crf", "21", "-r", "30000/1001",
             "-deinterlace", "-threads", str(threads), "-y", out_file_name])
 
