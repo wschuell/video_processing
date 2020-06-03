@@ -22,7 +22,7 @@ test = {
 	'session1':{'video1':[
 	{'start':25145454, 'end': 54534543},
 	]
-}
+}}
 
 def extract_mp4(filename,outdir,video_name,info,threads=1):
     out_file_name = "{}/{}.mp4".format(outdir,video_name)
@@ -56,4 +56,5 @@ def cut_encode(cfg,threads=1):
                     extract_ts(filename='tmp/{}.mp4'.format(session), outdir='tmp', video_name=video_name + str(part_nb), info=parts_info[part_nb], threads=threads)
                 part_files = ['tmp/{}{}.ts'.format(video_name,i) for i in range(len(parts_info))]
                 concat(part_files=part_files, outdir='output', video_name, threads=threads)
+
 
